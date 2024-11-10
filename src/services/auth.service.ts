@@ -35,7 +35,6 @@ export const createAcccount = async (data: CreateAccountParams) => {
     firstname: data.firstname,
     lastname: data.lastname,
     email: data.email,
-    role: data.role,
     password: data.password,
   })) as UserDocument;
 
@@ -61,15 +60,12 @@ export const createAcccount = async (data: CreateAccountParams) => {
     userAgent: data.userAgent || "unknown",
   });
 
-  // Set audience to the selected user role
-  const audience = [data.role];
-
+  
   // Sign access and refresh token with role-based audience
   const refreshToken = jwt.sign(
     { sessionId: newSession._id },
     JWT_REFRESH_SECRET,
     {
-      audience,
       expiresIn: "30d",
     }
   );
@@ -82,7 +78,6 @@ export const createAcccount = async (data: CreateAccountParams) => {
     },
     JWT_SECRET,
     {
-      audience,
       expiresIn: "15m",
     }
   );

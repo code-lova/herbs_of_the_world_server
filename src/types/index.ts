@@ -19,7 +19,6 @@ export type CreateAccountParams = {
   firstname: string;
   lastname: string;
   email: string;
-  role: UserRole;
   password: string;
   userAgent?: string;
 };
