@@ -11,6 +11,8 @@ import authRoutes from "./routes/auth.route";
 import authenticate from "./middleware/authenticate";
 import userRoutes from "./routes/user.route";
 import sessionRoutes from "./routes/session.route";
+import apiRoutes from "./routes/api.route";
+import adminMiddleware from "./middleware/adminMiddleware";
 
 const app = express();
 // Define a whitelist of allowed origins
@@ -36,6 +38,12 @@ app.use("/auth", authRoutes);
 //protected routes
 app.use("/user", authenticate, userRoutes);
 app.use("/sessions", authenticate, sessionRoutes);
+
+//This api route is restrcited for only roles that are admin
+app.use("/api", authenticate, adminMiddleware, apiRoutes);
+
+//This api route is for fetching and posting made by authentcated users
+//app.use("herbs", authenticate, herbsRoutes)
 
 
 app.use(errorHandler);

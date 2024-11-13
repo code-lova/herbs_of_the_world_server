@@ -13,6 +13,8 @@ export const enum verificationCodeType {
 
 export const enum AppErrorCode {
     InvalidAccessToken = "InvalidAccessToken",
+    UserNotFound = "UserNotFound",
+    AccessDenied = "AccessDenied",
 }
 
 export type CreateAccountParams = {
@@ -54,3 +56,13 @@ export type resetPasswordType = {
   password: string;
   resetVerificationCode: string;
 };
+
+export type createCategoryType = {
+  name: string;
+  slug: string;
+  description?: string;
+  metaTitle?: string;
+  metaDescription?: string;
+  metaKeywords?: string;
+  canonicalUrl?: string;
+}
