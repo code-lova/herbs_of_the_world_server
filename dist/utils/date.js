@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.oneHourFromNow = exports.fiveMinutesAgo = exports.fifteenMinutesFromNow = exports.thirtyDaysFromNow = exports.twentyFourHoursFromNow = exports.oneYearFromNow = void 0;
+exports.oneHourFromNow = exports.fiveMinutesAgo = exports.thirtyDaysInMilliseconds = exports.fifteenMinutesInMilliseconds = exports.fifteenMinutesFromNow = exports.thirtyDaysFromNow = exports.twentyFourHoursFromNow = exports.oneYearFromNow = void 0;
 const oneYearFromNow = () => {
     const now = new Date();
     return new Date(now.setFullYear(now.getFullYear() + 1));
@@ -21,6 +21,10 @@ const fifteenMinutesFromNow = () => {
     return new Date(now.getTime() + 15 * 60 * 1000); // 15 mins in milliseconds
 };
 exports.fifteenMinutesFromNow = fifteenMinutesFromNow;
+const fifteenMinutesInMilliseconds = () => 15 * 60 * 1000;
+exports.fifteenMinutesInMilliseconds = fifteenMinutesInMilliseconds;
+const thirtyDaysInMilliseconds = () => 30 * 24 * 60 * 60 * 1000;
+exports.thirtyDaysInMilliseconds = thirtyDaysInMilliseconds;
 const fiveMinutesAgo = () => {
     const now = new Date();
     return new Date(now.getTime() - 5 * 60 * 1000); // 5 mins in miliseconds
