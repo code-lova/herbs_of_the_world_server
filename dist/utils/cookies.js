@@ -33,7 +33,7 @@ exports.setAuthCookies = setAuthCookies;
 // Function to clear authentication cookies
 const clearAuthCookies = (res) => {
     return res
-        .clearCookie("accessToken", { path: "/" })
-        .clearCookie("refreshToken", { path: exports.REFRESH_PATH });
+        .clearCookie("accessToken", { ...defaults, path: "/" })
+        .clearCookie("refreshToken", { ...defaults, path: exports.REFRESH_PATH });
 };
 exports.clearAuthCookies = clearAuthCookies;

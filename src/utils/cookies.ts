@@ -43,6 +43,6 @@ export const setAuthCookies = ({ res, accessToken, refreshToken }: SetAuthCookie
 // Function to clear authentication cookies
 export const clearAuthCookies = (res: Response) => {
   return res
-  .clearCookie("accessToken", { path: "/"})
-  .clearCookie("refreshToken", { path: REFRESH_PATH });
+  .clearCookie("accessToken", { ...defaults, path: "/"})
+  .clearCookie("refreshToken", { ...defaults, path: REFRESH_PATH });
 };
