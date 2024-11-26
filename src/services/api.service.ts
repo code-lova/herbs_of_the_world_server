@@ -7,10 +7,10 @@ import { toSlug } from "../utils/slug";
 export const createCategoryService = async (data: createCategoryType) => {
   //verify if the category already exists
   const existingCategory = await Category.exists({
-    name: data.name,
+    $or: [{ name: data.name}, { slug: toSlug(data.slug || data.name) }],
   });
 
-  appAssert(!existingCategory, CONFLICT, "Category already exists");
+  appAssert(!existingCategory, CONFLICT, "Category name or slug already exists");
 
   // Generate a slug if it isn't provided or incorrectly formatted
   const slug = data.slug && data.slug.trim() !== "" ? toSlug(data.slug) : toSlug(data.name);
@@ -37,6 +37,7 @@ export const fetchCategoriesService = async () => {
   return categories;
 };
 
+//This was not needed any more...
 export const fetchcategoryById = async (id: String) => {
   // Fetch the category by ID
   const category = await Category.findById(id);

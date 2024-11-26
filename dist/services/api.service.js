@@ -11,9 +11,9 @@ const slug_1 = require("../utils/slug");
 const createCategoryService = async (data) => {
     //verify if the category already exists
     const existingCategory = await category_model_1.default.exists({
-        name: data.name,
+        $or: [{ name: data.name }, { slug: (0, slug_1.toSlug)(data.slug || data.name) }],
     });
-    (0, appAssert_1.default)(!existingCategory, http_1.CONFLICT, "Category already exists");
+    (0, appAssert_1.default)(!existingCategory, http_1.CONFLICT, "Category name or slug already exists");
     // Generate a slug if it isn't provided or incorrectly formatted
     const slug = data.slug && data.slug.trim() !== "" ? (0, slug_1.toSlug)(data.slug) : (0, slug_1.toSlug)(data.name);
     //create the category
@@ -36,6 +36,7 @@ const fetchCategoriesService = async () => {
     return categories;
 };
 exports.fetchCategoriesService = fetchCategoriesService;
+//This was not needed any more...
 const fetchcategoryById = async (id) => {
     // Fetch the category by ID
     const category = await category_model_1.default.findById(id);
