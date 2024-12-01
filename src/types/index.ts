@@ -66,3 +66,26 @@ export type createCategoryType = {
   metaKeywords?: string;
   canonicalUrl?: string;
 }
+
+export enum Status {
+  ACTIVE = "active",
+  INACTIVE = "inactive"
+}
+
+export type createSubCategoryType = {
+  name: string;
+  slug: string;
+  description?: string;
+  metaTitle?: string;
+  metaDescription?: string;
+  metaKeywords?: string;
+  canonicalUrl?: string;
+  categoryId: string;
+  status: Status | "active" | "inactive";
+}
+
+export interface QueryParams {
+  searchTerm: string;
+  page: number;
+  limit: number;
+}
